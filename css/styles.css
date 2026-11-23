@@ -1,0 +1,113 @@
+:root{--sky:#90e2ea;--line:#b8e7e2;--go:#2dd78b;--mint:#e6faf2;--ink:#1f2933;--warn:#c0392b;--r:16px;--p:24px}
+*{box-sizing:border-box}
+body{margin:0;font:14px/1.5 "Oxygen Mono",ui-monospace,monospace;color:var(--ink);background:#fff;display:grid;grid-template-columns:260px 1fr;min-height:100vh}
+h1,h2,h3,.logo,button,legend,th,dt,b,.chip{font-family:"Momo Trust Display","Trebuchet MS",sans-serif;font-weight:400}
+h1{font-size:22px;margin:0}h2{font-size:26px;margin:.3em 0}h3{font-size:15px;margin:0 0 8px}
+.logo{font-size:24px;margin:0 0 6px}
+.skip{position:absolute;left:-999px}.skip:focus{left:8px;top:8px;background:#fff;padding:8px;z-index:9}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+:focus-visible{outline:3px solid #0b6b6f;outline-offset:2px}
+/* layout */
+#brand,#side{background:var(--sky);border-right:1px solid var(--line)}
+#brand{display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:32px}
+#brand img{width:200px;height:auto}#brand .logo{font-size:40px;margin-top:20px}
+#side{padding:24px 18px;display:flex;flex-direction:column;gap:6px;position:sticky;top:0;height:100vh}
+#side button{all:unset;box-sizing:border-box;display:flex;align-items:center;gap:12px;width:100%;min-height:44px;padding:0 14px;border:1.5px solid rgba(255,255,255,.75);border-radius:14px;background:rgba(255,255,255,.4);cursor:pointer;font:13px "Oxygen Mono",monospace;color:var(--ink);transition:background .15s,border-color .15s,transform .15s}
+#side button svg{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+#side button:hover{background:rgba(255,255,255,.8);border-color:rgba(31,41,51,.4);transform:translateX(3px)}
+#side button:active{transform:none;background:#fff}
+#side button:focus-visible{outline:3px solid #0b6b6f;outline-offset:2px}
+#navlist{display:flex;flex-direction:column;gap:6px}
+#side #navtoggle{display:none}
+#side button[aria-current=page]{background:#fff;border-color:var(--ink);box-shadow:0 3px 0 var(--ink);font-family:"Momo Trust Display",sans-serif;transform:none}
+#side button[aria-current=page]::after{content:"";margin-left:auto;width:10px;height:10px;border-radius:50%;background:var(--go);border:1.5px solid var(--ink);flex:none}
+#wrap{min-width:0}
+#top{background:var(--sky);border-bottom:1px solid var(--line);height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 32px}
+main{padding:24px 32px}
+body.auth #side,body.auth #top{display:none}
+body.auth #brand{display:flex}
+body.auth main{display:grid;place-items:center;min-height:100vh}
+body.auth .view{width:100%;max-width:520px}
+body.auth #v-perfil,body.auth #v-consent{max-width:900px}
+.view{display:none}.view.on{display:block}
+/* components */
+.card{border:1px solid var(--line);border-radius:var(--r);padding:20px;margin:0 0 16px;background:#fff}
+.narrow{max-width:480px}.danger{border-color:#e9b4ad}
+.cols{display:grid;grid-template-columns:1.6fr 1fr;gap:16px;align-items:start}
+.cols2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.view#v-config .cols,.view#v-control .cols,.view#v-descanso .cols,.view#v-reglas .cols,.view#v-cuidadores .cols,.view#v-notif .cols,.view#v-nino .cols,#v-perfil .cols{grid-template-columns:1fr 1fr}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;margin:0 0 16px}
+.stat{margin:0;background:var(--mint);border:1px solid var(--line);border-radius:var(--r);padding:16px;font-size:12px}
+.stat b{display:block;font-size:26px;line-height:1.3}
+.f{margin:0 0 14px;border:0;padding:0}.f label,legend{display:block;font-size:12px;margin-bottom:4px;font-family:"Momo Trust Display",sans-serif}
+input,select{width:100%;height:44px;border:1px solid var(--line);border-radius:12px;padding:0 13px;font:inherit;background:#fff;color:var(--ink)}
+input[type=checkbox]{width:18px;height:18px;accent-color:#0b8f5a;flex:none}
+small{display:block;font-size:11px;margin-top:4px}
+.btn{background:var(--go);border:1px solid var(--line);border-radius:24px;height:46px;padding:0 22px;font-size:13px;cursor:pointer;color:var(--ink);margin:0 6px 8px 0}
+.btn.sec{background:#fff}.btn.block{display:block;width:100%}.btn.warn{background:#ffe3df;border-color:#e9b4ad}
+.btn:hover{filter:brightness(.96)}
+.link{all:unset;cursor:pointer;text-decoration:underline;font:inherit;font-family:"Momo Trust Display",sans-serif}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 12px}
+.chip{border:1px solid var(--line);border-radius:16px;background:#fff;height:32px;padding:0 14px;font-size:13px;cursor:pointer;color:var(--ink)}
+.chip.on,.chip[aria-pressed=true]{background:var(--go)}
+.chip:not(.on):not([aria-pressed=true]):hover{background:var(--mint)}
+.chips[hidden]{display:none}
+#kids .chip[aria-pressed=true]{border-color:var(--ink)}
+#kids .chip.add{border-style:dashed}
+#kids{margin:0 0 16px}
+.err{color:var(--warn);font-size:12px;min-height:1em;margin:0 0 8px}
+.hint,.meta,.mono{font-size:12px}.mono{word-break:break-all}
+.note{background:var(--mint);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:12px}
+.chk{display:flex;gap:10px;align-items:center;margin:0 0 12px}
+.pw{position:relative}.eye{position:absolute;right:8px;top:8px;border:0;background:none;cursor:pointer;font-size:16px}
+.bar{height:10px;background:var(--mint);border-radius:16px;margin:8px 0}.bar i{display:block;height:100%;background:var(--go);border-radius:16px;transition:width .3s}
+.meta{display:flex;gap:20px;flex-wrap:wrap}
+.opts{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:12px}
+.opts button{border:1px solid var(--line);background:#fff;border-radius:var(--r);padding:12px;cursor:pointer;font-size:20px;color:var(--ink)}
+.opts button span{display:block;font-size:12px}.opts button[aria-checked=true]{background:var(--go)}
+.dl{margin:0 0 12px}.dl dt{font-size:13px;margin-top:8px}.dl dd{margin:0}
+.code{display:flex;gap:10px;font:40px "Momo Trust Display",sans-serif;margin:8px 0;letter-spacing:.3em}
+.step{display:flex;align-items:center;justify-content:center;gap:24px;margin:16px 0}
+.round{width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:var(--mint);font-size:24px;cursor:pointer}
+.big{text-align:center;font:42px/1 "Momo Trust Display",sans-serif;margin:0}.big small{font:12px "Oxygen Mono",monospace}
+.ends{display:flex;justify-content:space-between;font-size:12px;margin:0 0 16px}
+.tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.tabs button{border:1px solid var(--line);border-radius:16px;background:#fff;padding:6px 14px;cursor:pointer;color:var(--ink)}
+.tabs [aria-selected=true]{background:var(--go)}
+.bars{display:flex;align-items:flex-end;gap:10px;height:220px;border-bottom:1px solid var(--line);position:relative}
+.bars div{flex:1;background:var(--go);border-radius:8px 8px 0 0;text-align:center;font-size:11px;min-height:4px;position:relative}
+.bars div span{position:absolute;bottom:-22px;left:0;right:0}
+.bars hr{position:absolute;left:0;right:0;border:0;border-top:2px dashed #0b6b6f;margin:0}
+#wk{margin-top:36px}
+.days{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:12px}
+.days p{margin:0;text-align:center;background:var(--mint);border:1px solid var(--line);border-radius:12px;padding:8px 0;font-size:12px}.days b{display:block;font-size:22px}
+.list{list-style:none;margin:12px 0 0;padding:0}.list li{border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:8px;display:flex;justify-content:space-between;gap:8px;align-items:center}
+.scroll{overflow-x:auto}table{border-collapse:collapse;width:100%;min-width:560px}th,td{text-align:left;padding:10px;border-bottom:1px solid var(--line);vertical-align:top}
+.kid{background:var(--mint);text-align:center}.kid .row{justify-content:center}
+dialog{border:1px solid var(--line);border-radius:var(--r);padding:24px;max-width:460px;width:calc(100% - 32px);color:var(--ink)}
+dialog::backdrop{background:rgba(31,41,51,.45)}
+/* responsive */
+@media(max-width:900px){
+  body{grid-template-columns:1fr;grid-template-rows:auto;align-content:start}
+  #side{align-self:start;position:relative;top:auto;height:auto;flex-direction:column;flex-wrap:nowrap;padding:10px 16px 12px;gap:8px;border-right:0;border-bottom:1px solid var(--line);z-index:5}
+  #side .logo{margin:0}
+  /* menú desplegable (móvil): muestra la sección actual y abre la lista al tocar */
+  #side #navtoggle{display:flex;justify-content:space-between;min-height:48px;font-size:14px;font-family:"Momo Trust Display",sans-serif;background:#fff;border-color:var(--ink);box-shadow:0 3px 0 var(--ink)}
+  #side #navtoggle:hover{transform:none}
+  #navtoggle .nt-cur{display:flex;align-items:center;gap:10px;min-width:0}
+  #navtoggle #nt-ico{display:flex}
+  #navtoggle .chev{transition:transform .2s}
+  #navtoggle[aria-expanded=true] .chev{transform:rotate(180deg)}
+  #navlist{display:none;position:absolute;left:16px;right:16px;top:100%;margin-top:-4px;background:#fff;border:1.5px solid var(--ink);border-radius:14px;padding:6px;box-shadow:0 8px 0 rgba(31,41,51,.18);flex-direction:column;gap:2px;max-height:calc(100vh - 150px);max-height:calc(100dvh - 150px);overflow-y:auto}
+  #side.open #navlist{display:flex}
+  #side #navlist button{min-height:48px;font-size:14px;border-color:transparent;background:transparent;padding:0 12px}
+  #side #navlist button:hover{transform:none;background:var(--mint)}
+  #side #navlist button[aria-current=page]{background:var(--mint);border-color:transparent;box-shadow:none}
+  #top{padding:0 16px}main{padding:16px}
+  .cols,.view#v-config .cols,.view#v-control .cols,.view#v-descanso .cols,.view#v-reglas .cols,.view#v-cuidadores .cols,.view#v-notif .cols,.view#v-nino .cols,#v-perfil .cols{grid-template-columns:1fr}
+  body.auth{grid-template-columns:1fr}body.auth #brand{padding:20px}body.auth #brand img{width:110px}body.auth #brand .logo{font-size:28px;margin-top:8px}
+  body.auth main{min-height:0;padding:16px;display:block}
+}
+@media(max-width:520px){.stats{grid-template-columns:1fr 1fr}.cols2,.opts{grid-template-columns:1fr}.code{font-size:32px}.btn{width:100%}h2{font-size:22px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}

@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Movikids · Un freno amigable para el tiempo de pantalla</title>
+<meta name="description" content="Movikids ayuda a las familias a cerrar el tiempo de pantalla de niños de 4 a 9 años de forma amable.">
+<link rel="icon" href="../favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Momo+Trust+Display&family=Oxygen+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="auth">
+<a class="skip" href="#main">Saltar al contenido</a>
+
+<aside id="brand" aria-label="Marca Movikids">
+  <img src="../assets/images/mascota.svg" alt="Mascota pingüino de Movikids leyendo un libro" width="200" height="233">
+  <p class="logo">Movikids</p>
+  <p>Un freno amigable para el tiempo de pantalla de tu familia</p>
+</aside>
+
+<nav id="side" aria-label="Menú del panel del padre">
+  <p class="logo">Movikids</p>
+  <button type="button" id="navtoggle" aria-expanded="false" aria-controls="navlist"><span class="nt-cur"><span id="nt-ico" aria-hidden="true"></span><span><span class="sr">Menú, sección actual: </span><span id="nt-txt">Inicio</span></span></span><svg class="chev" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></button>
+  <div id="navlist">
+  <button type="button" data-go="inicio"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v10h13V10"/><path d="M10 20v-5.5h4V20"/></svg><span>Inicio</span></button>
+  <button type="button" data-go="control"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 7v5.2l3.2 2"/></svg><span>Control de tiempo</span></button>
+  <button type="button" data-go="informes"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 20v-8M12 20V4M19 20v-5"/></svg><span>Informes</span></button>
+  <button type="button" data-go="descanso"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 14.6A8 8 0 1 1 9.4 4a6.6 6.6 0 0 0 10.6 10.6z"/></svg><span>Horario de descanso</span></button>
+  <button type="button" data-go="reglas"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9.5 6H20M9.5 12H20M9.5 18H20"/><path d="m3.5 6 1.2 1.2L6.8 5M3.5 12l1.2 1.2L6.8 11M3.5 18l1.2 1.2L6.8 17"/></svg><span>Reglas del hogar</span></button>
+  <button type="button" data-go="cuidadores"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="8" r="3.4"/><path d="M2.8 20c0-3.5 2.8-5.8 6.2-5.8s6.2 2.3 6.2 5.8"/><circle cx="17.4" cy="9" r="2.4"/><path d="M17 14.3c2.7.2 4.3 2 4.3 4.9"/></svg><span>Cuidadores</span></button>
+  <button type="button" data-go="notif"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 17v-6a6 6 0 0 1 12 0v6l1.8 2H4.2z"/><path d="M10 21.2a2.2 2.2 0 0 0 4 0"/></svg><span>Notificaciones</span></button>
+  <button type="button" data-go="privacidad"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3 20 6v6c0 4.5-3.2 7.8-8 9-4.8-1.2-8-4.5-8-9V6z"/><path d="m8.8 12 2.2 2.2 4.2-4.4"/></svg><span>Privacidad</span></button>
+  <button type="button" data-go="config"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/></svg><span>Configuración</span></button>
+  <button type="button" data-go="nino"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M8.4 14.2c.9 1.5 2.2 2.3 3.6 2.3s2.7-.8 3.6-2.3"/><path d="M9 9.6h.01M15 9.6h.01"/></svg><span>Vista del niño</span></button>
+  </div>
+</nav>
+
+<div id="wrap">
+<header id="top"><h1 id="ttl" tabindex="-1">Movikids</h1><p class="who"><span data-b="kid"></span> · Padre <button class="link" id="logout" type="button">Cerrar sesión</button></p></header>
+<main id="main">
+<div class="chips" id="kids" role="group" aria-label="Selector de niño" hidden></div><p class="sr" id="kids-m" role="status"></p>
+
+<!-- Inicio / hero -->
+<section class="view" id="v-home">
+  <p class="logo">Movikids</p><h2>Cerrar la pantalla sin pelear</h2>
+  <p>Define el tiempo diario, recibe informes claros y deja que la mascota acompañe a tu hijo (4 a 9 años) en un cierre amable.</p>
+  <div class="row"><button class="btn" data-go="registro">Crear cuenta</button><button class="btn sec" data-go="login">Iniciar sesión</button></div>
+</section>
+
+<!-- HU-01 -->
+<section class="view" id="v-registro"><div class="card narrow">
+  <p class="logo">Movikids</p><h2>Crea tu cuenta de Padre</h2>
+  <form id="f-reg" novalidate>
+    <div class="f"><label for="r-mail">Correo electrónico</label><input id="r-mail" type="email" autocomplete="email" placeholder="nombre@gmail.com" aria-describedby="r-err"></div>
+    <div class="f"><label for="r-pw">Contraseña (mínimo 8 caracteres)</label><div class="pw"><input id="r-pw" type="password" autocomplete="new-password" aria-describedby="r-err"><button type="button" class="eye" data-eye="r-pw" aria-label="Mostrar u ocultar contraseña">👁</button></div></div>
+    <p class="err" id="r-err" role="alert"></p>
+    <button class="btn" type="submit">Registrarme</button>
+  </form>
+  <p>¿Ya tienes cuenta? <button class="link" data-go="login">Inicia sesión</button></p>
+</div></section>
+
+<!-- HU-02 -->
+<section class="view" id="v-login"><div class="card narrow">
+  <p class="logo">Movikids</p><h2>Bienvenido de nuevo</h2>
+  <form id="f-log" novalidate>
+    <div class="f"><label for="l-mail">Correo electrónico</label><input id="l-mail" type="email" autocomplete="email" placeholder="nombre@gmail.com"></div>
+    <div class="f"><label for="l-pw">Contraseña</label><div class="pw"><input id="l-pw" type="password" autocomplete="current-password"><button type="button" class="eye" data-eye="l-pw" aria-label="Mostrar u ocultar contraseña">👁</button></div></div>
+    <p class="err" id="l-err" role="alert"></p>
+    <button class="btn" type="submit">Iniciar sesión</button>
+  </form>
+  <p class="hint">Demo: padre@movikids.app · movikids1</p>
+  <p><button class="link" data-go="forgot">Olvidé mi contraseña</button> · <button class="link" data-go="registro">Crear cuenta nueva</button></p>
+</div></section>
+
+<!-- HU-31 -->
+<section class="view" id="v-forgot"><div class="card narrow">
+  <p class="logo">Movikids</p><h2>Recuperar acceso</h2>
+  <form id="f-for" novalidate><p>Escribe tu correo y te enviaremos un enlace para crear una nueva contraseña.</p>
+    <div class="f"><label for="o-mail">Correo electrónico</label><input id="o-mail" type="email" placeholder="nombre@gmail.com"></div>
+    <p class="err" id="o-err" role="alert"></p><button class="btn" type="submit">Enviar enlace</button></form>
+  <p><button class="link" data-go="login">Volver a iniciar sesión</button></p>
+</div></section>
+<section class="view" id="v-forgotok"><div class="card narrow"><h2>Revisa tu correo</h2>
+  <p>Si el correo tiene una cuenta, recibirás un enlace para crear una nueva contraseña. Se muestra la misma confirmación exista o no una cuenta.</p>
+  <button class="btn" data-go="reset">Abrir enlace de recuperación</button> <button class="btn sec" data-go="login">Volver a iniciar sesión</button></div></section>
+<section class="view" id="v-reset"><div class="card narrow"><h2>Crea tu nueva contraseña</h2>
+  <form id="f-res" novalidate>
+    <div class="f"><label for="n-pw">Nueva contraseña (mínimo 8 caracteres)</label><input id="n-pw" type="password" autocomplete="new-password"></div>
+    <div class="f"><label for="n-pw2">Confirmar nueva contraseña</label><input id="n-pw2" type="password" autocomplete="new-password"></div>
+    <p class="err" id="n-err" role="alert"></p><button class="btn" type="submit">Restablecer contraseña</button></form>
+  <div id="n-exp" class="note" hidden>Este enlace venció. <button class="btn sec" data-go="forgot">Solicitar otro enlace</button></div></div></section>
+
+<!-- HU-09 -->
+<section class="view" id="v-consent"><div class="card">
+  <p class="logo">Movikids</p><h2>Antes de crear el perfil de tu hijo</h2><p>Aviso de privacidad en lenguaje sencillo.</p>
+  <dl class="dl"><dt>Qué datos tratamos</dt><dd>Apodo, edad, tiempos de uso y rachas.</dd><dt>Para qué</dt><dd>Gestionar el cierre del tiempo de pantalla.</dd>
+  <dt>Quién los ve</dt><dd>Tú y, solo si tú lo autorizas, tu psicólogo.</dd><dt>Tus derechos</dt><dd>Acceso, rectificación, cancelación y oposición.</dd></dl>
+  <label class="chk"><input type="checkbox" id="c-ok"> Leí el aviso y doy mi consentimiento expreso como padre o tutor</label>
+  <p class="err" id="c-err" role="alert"></p>
+  <div class="row"><button class="btn" id="c-yes">Acepto</button><button class="btn sec" id="c-no">No acepto</button></div>
+</div></section>
+
+<!-- HU-04 / HU-03 -->
+<section class="view" id="v-perfil"><div class="card">
+  <p class="logo">Movikids</p><h2 id="p-t">Registra a tu hijo y vincula</h2>
+  <div class="cols">
+    <form id="f-per" novalidate><h3>1 · Perfil del niño</h3>
+      <div class="f"><label for="p-nick">Apodo (máximo 20 caracteres)</label><input id="p-nick" maxlength="20" placeholder="Lucho" aria-describedby="p-h p-err"><small id="p-h">No pedimos apellido, foto ni datos sensibles.</small></div>
+      <fieldset class="f"><legend>Edad (4 a 9 años)</legend><div class="chips" id="p-age"></div></fieldset>
+      <p class="err" id="p-err" role="alert"></p><button class="btn" type="submit">Guardar perfil</button></form>
+    <div><h3>2 · Código de vinculación</h3><p>Escríbelo en la app de tu hijo.</p>
+      <p class="code" id="code" aria-live="polite" aria-label="Código de vinculación">– – – –</p>
+      <p id="code-t" role="timer">Guarda el perfil para generar el código.</p>
+      <div class="row"><button class="btn sec" id="share" type="button">Compartir código</button><button class="btn sec" id="regen" type="button">Generar código nuevo</button></div>
+      <small>El código anterior queda inválido al generar uno nuevo.</small></div>
+  </div>
+  <button class="btn" id="p-next" type="button">Continuar</button><button class="btn sec" id="p-cancel" type="button" hidden>Cancelar</button>
+</div></section>
+
+<!-- HU-06 -->
+<section class="view" id="v-limite"><div class="card narrow">
+  <p class="logo">Movikids</p><h2>Elige el tiempo diario de pantalla</h2><p>Te sugerimos 1 hora. Puedes cambiarlo cuando quieras.</p>
+  <div class="step"><button class="round" id="l-m" aria-label="Restar 15 minutos">−</button><p class="big"><output id="l-v" aria-live="polite">60</output><small>minutos al día</small></p><button class="round" id="l-p" aria-label="Sumar 15 minutos">+</button></div>
+  <div class="bar"><i id="l-bar"></i></div><p class="ends"><span>30 min</span><span>3 h</span></p>
+  <button class="btn" id="l-go">Continuar</button>
+</div></section>
+
+<!-- HU-10 / HU-40 / HU-26 / HU-29 -->
+<section class="view" id="v-inicio">
+  <div class="stats"><p class="stat"><b data-b="used" data-f="min"></b>Tiempo usado hoy</p><p class="stat"><b data-b="limit"></b>Límite diario (min)</p><p class="stat"><b data-b="left" data-f="min"></b>Tiempo restante</p><p class="stat"><b><span data-b="streak"></span> días</b>Racha actual</p><p class="stat"><b data-b="points"></b>Puntos</p></div>
+  <div id="paused" class="note" hidden><b>Pausa activa.</b> El niño pasa por el Freno amigable. <button class="btn sec" id="resume">Reanudar</button></div>
+  <div class="cols">
+    <div>
+      <section class="card"><h3>Informe diario de hoy</h3><p id="rep"></p><div class="bar" role="progressbar" aria-label="Tiempo usado hoy" id="pg" aria-valuemin="0" aria-valuemax="100"><i id="pg-i"></i></div>
+        <p class="meta"><span id="rep-s"></span><span>Tiempo extra pedido hoy: <span data-b="extra" data-f="yn"></span></span><span>Cierres tranquilos esta semana: <span data-b="calm"></span></span></p></section>
+      <section class="card"><h3>¿Cómo terminó la sesión de hoy? (opcional)</h3>
+        <div class="opts" role="radiogroup" aria-label="Cierre de hoy"><button role="radio" aria-checked="false" data-cl=":)">:)<span>Tranquila</span></button><button role="radio" aria-checked="false" data-cl=":|">:|<span>Con molestia</span></button><button role="radio" aria-checked="false" data-cl=":(">:(<span>Con rabieta</span></button></div>
+        <p id="cl-msg" role="status"></p><button class="btn sec" id="cl-skip">Omitir</button></section>
+    </div>
+    <div><h3>Acciones rápidas</h3>
+      <button class="btn block" data-go="control">Ajustar tiempo</button><button class="btn sec block" id="pause">Pausar ahora</button><button class="btn sec block" data-go="descanso">Horario de descanso nocturno</button>
+      <section class="card"><h3>Solicitud pendiente</h3><p id="req">Sin solicitudes.</p><div class="row"><button class="btn" id="req-y">Aprobar</button><button class="btn sec" id="req-n">Ahora no</button></div><p id="req-m" role="status"></p></section>
+    </div>
+  </div>
+</section>
+
+<!-- HU-08 / HU-32 -->
+<section class="view" id="v-control">
+  <div class="stats"><p class="stat"><b data-b="limit"></b>Límite diario (min)</p><p class="stat"><b data-b="used" data-f="min"></b>Usado hoy</p><p class="stat"><b data-b="left" data-f="min"></b>Tiempo restante</p></div>
+  <div class="cols">
+    <section class="card"><h3>Aumentar tiempo</h3><div class="chips" data-adj="1"><button class="chip" data-v="15">+15 min</button><button class="chip" data-v="30">+30 min</button><button class="chip" data-v="45">+45 min</button><button class="chip" data-v="">Personalizado</button></div>
+      <div class="f"><label for="a-up">Minutos a sumar</label><input id="a-up" type="number" min="1" value="15"></div><button class="btn" id="a-yes">Aplicar aumento</button><p class="note" id="a-msg" role="status" hidden></p></section>
+    <section class="card"><h3>Reducir tiempo</h3><div class="chips" data-adj="-1"><button class="chip" data-v="15">−15 min</button><button class="chip" data-v="30">−30 min</button><button class="chip" data-v="45">−45 min</button><button class="chip" data-v="">Personalizado</button></div>
+      <div class="f"><label for="a-dn">Minutos a restar</label><input id="a-dn" type="number" min="1" value="15"></div><button class="btn" id="d-yes">Aplicar reducción</button><p class="note" id="d-msg" role="status">Si el nuevo límite queda por debajo de lo usado, el tiempo restante será 0.</p></section>
+  </div>
+  <section class="card"><h3>Renovación diaria automática (HU-32)</h3><p>A las 00:00 el tiempo usado vuelve a 0 y el tiempo extra no se acumula.</p><button class="btn sec" id="renew">Simular medianoche</button> <span id="renew-m" role="status"></span></section>
+</section>
+
+<!-- HU-10 / 28 / 17 / 18 / 19 / 40 -->
+<section class="view" id="v-informes">
+  <div class="tabs" role="tablist" aria-label="Tipo de informe"><button role="tab" data-tab="d" aria-selected="true">Diario</button><button role="tab" data-tab="s" aria-selected="false">Semanal</button><button role="tab" data-tab="r" aria-selected="false">Rachas y puntos</button><button role="tab" data-tab="c" aria-selected="false">Cierres</button></div>
+  <section class="card tp" id="t-d" role="tabpanel"><h3>Informe diario</h3><p id="rep2"></p><p>Cierres tranquilos esta semana: <b data-b="calm"></b></p></section>
+  <section class="card tp" id="t-s" role="tabpanel" hidden><h3>Uso de cada día frente al límite (HU-28)</h3><div class="bars" id="bars" role="img" aria-label=""></div><div class="stats" id="wk"></div></section>
+  <section class="card tp" id="t-r" role="tabpanel" hidden><h3>Días cumplidos esta semana (HU-17)</h3><div class="days" id="days-p"></div><p>Un día cuenta como cumplido cuando el niño completó el cierre con la mascota, incluso con tiempo extra aprobado por ti.</p><p>Cuando un día no se cumple, la racha vuelve a cero y la mascota lo anima: «Mañana lo intentamos juntos». No se quitan puntos.</p><div class="stats"><p class="stat"><b data-b="streak"></b>Racha actual (días)</p><p class="stat"><b data-b="points"></b>Puntos del niño</p></div></section>
+  <section class="card tp" id="t-c" role="tabpanel" hidden><h3>Cómo terminaron las sesiones esta semana (HU-40)</h3><div class="stats" id="cl-sum"></div><div class="days" id="days-c"></div></section>
+</section>
+
+<!-- HU-35 -->
+<section class="view" id="v-descanso"><div class="cols">
+  <section class="card"><h3>Horario de descanso nocturno</h3>
+    <label class="chk"><input type="checkbox" id="n-on" checked> Activar horario de descanso</label>
+    <div class="cols2"><div class="f"><label for="n-from">Desde</label><input type="time" id="n-from" value="21:00"></div><div class="f"><label for="n-to">Hasta</label><input type="time" id="n-to" value="07:00"></div></div>
+    <small>Por defecto de 9 p. m. a 7 a. m.</small><p class="err" id="n-e" role="alert"></p><button class="btn" id="n-save">Guardar horario</button><p id="n-m" role="status"></p></section>
+  <section class="card"><h3>Qué verá el niño</h3><dl class="dl"><dt id="n-a">20:55</dt><dd>Aviso previo de 5 minutos del descanso.</dd><dt id="n-b">21:00 – 07:00</dt><dd>Pantalla de descanso con la mascota.</dd><dt>00:00</dt><dd>El tiempo diario se renueva.</dd></dl></section>
+</div></section>
+
+<!-- HU-39 / HU-42 -->
+<section class="view" id="v-reglas"><div class="cols">
+  <section class="card"><h3>Condiciones previas al uso (HU-39)</h3><p>Elige hasta 3 que el niño debe cumplir antes de usar la pantalla.</p><div id="rules"></div>
+    <div class="row"><div class="f"><label for="r-new">Condición propia</label><input id="r-new" maxlength="30"></div><button class="btn sec" id="r-add">Agregar</button></div>
+    <p id="r-m" role="status"></p><p class="note">Así lo verá el niño: <b id="r-prev"></b></p></section>
+  <section class="card"><h3>Actividades sin pantalla permitidas (HU-42)</h3><p>La mascota propondrá 3 al terminar el tiempo.</p><div id="acts"></div>
+    <div class="row"><div class="f"><label for="a-new">Actividad propia (máx. 30 caracteres)</label><input id="a-new" maxlength="30"></div><button class="btn sec" id="a-add">Agregar</button></div>
+    <p id="a-m" role="status">Deben quedar al menos 2 actividades activas.</p></section>
+</div><button class="btn" id="rl-save">Guardar reglas</button> <span id="rl-m" role="status"></span></section>
+
+<!-- HU-24 -->
+<section class="view" id="v-cuidadores"><div class="cols">
+  <section class="card"><h3>Invitar a otro adulto del hogar (HU-24)</h3><p>Comparte las reglas con otra persona para que todos apliquen lo mismo.</p>
+    <div class="f"><label for="cu-n">Nombre del cuidador</label><input id="cu-n" maxlength="30"></div><p class="err" id="cu-e" role="alert"></p>
+    <button class="btn" id="cu-go">Generar enlace de invitación</button>
+    <div class="note" id="cu-box" hidden><p>Enlace de invitación</p><p id="cu-link" class="mono"></p><button class="btn sec" id="cu-copy">Copiar enlace</button> <span id="cu-m" role="status"></span></div></section>
+  <section class="card"><h3>Cuidadores del hogar</h3><ul class="list" id="cu-list"></ul></section>
+</div></section>
+
+<!-- HU-27 / HU-38 -->
+<section class="view" id="v-notif"><div class="cols">
+  <section class="card"><h3>Aviso al terminar la sesión (HU-27)</h3>
+    <label class="chk"><input type="checkbox" id="nt-end" checked> Avisarme cuando mi hijo termine su sesión</label><small>Puedes desactivarlo; el dato queda en el informe diario.</small><ul class="list" id="nt-list"></ul></section>
+  <section class="card"><h3>Audio de la mascota (HU-38)</h3>
+    <label class="chk"><input type="checkbox" id="nt-voice" checked> Voz suave de la mascota en los avisos</label><small>Si lo silencias, el aviso visual con texto se mantiene. No se usan sonidos de alarma.</small></section>
+</div></section>
+
+<!-- HU-47 / HU-09 -->
+<section class="view" id="v-privacidad"><section class="card"><h3>Datos que guarda Movikids (HU-47)</h3>
+  <div class="scroll"><table><caption class="sr">Datos guardados, finalidad y quién los ve</caption><thead><tr><th scope="col">Dato</th><th scope="col">Finalidad</th><th scope="col">Quién lo ve</th></tr></thead><tbody>
+  <tr><td>Apodo y edad</td><td>Personalizar los mensajes de la mascota</td><td>Solo tú</td></tr><tr><td>Tiempos de uso</td><td>Calcular el tiempo restante y los informes</td><td>Tú y, si lo autorizas, tu psicólogo</td></tr>
+  <tr><td>Rachas</td><td>Reforzar el cierre a tiempo</td><td>Tú y, si lo autorizas, tu psicólogo</td></tr><tr><td>Registros de cierre</td><td>Ver cómo terminan las sesiones</td><td>Solo tú; el psicólogo solo si eliges compartirlo</td></tr></tbody></table></div></section>
+  <section class="card"><h3>Tus derechos y el aviso</h3><p>Puedes ejercer tus derechos de acceso, rectificación, cancelación y oposición escribiendo al contacto de privacidad.</p><div class="row"><button class="btn sec" id="pv-rights">Contacto para ejercer tus derechos</button><button class="btn sec" id="pv-aviso">Volver a leer el aviso de privacidad</button></div></section></section>
+
+<!-- HU-25 / HU-44 / HU-33 / HU-48 -->
+<section class="view" id="v-config"><div class="cols">
+  <section class="card"><h3>Editar perfil del niño (HU-25)</h3><form id="f-ed" novalidate>
+    <div class="f"><label for="e-nick">Apodo (máximo 20 caracteres)</label><input id="e-nick" maxlength="20"></div>
+    <div class="f"><label for="e-age">Edad (4 a 9 años)</label><select id="e-age"></select></div>
+    <small>Si cambias la edad, la mascota ajusta sus mensajes y juegos (HU-44).</small><p class="err" id="e-err" role="alert"></p><p id="e-ok" role="status"></p><button class="btn" type="submit">Guardar cambios</button></form></section>
+  <div>
+    <section class="card danger"><h3>Zona de riesgo · Eliminar perfil y datos (HU-33)</h3><p>Esta acción no se puede deshacer. Se eliminará únicamente el perfil de <b data-b="kid"></b>, con su historial, las rachas y los puntos, y el vínculo del dispositivo.</p>
+      <div class="f"><label for="d-pw">Reingresa tu contraseña para confirmar</label><input id="d-pw" type="password" autocomplete="current-password"></div><p class="err" id="d-err" role="alert"></p><button class="btn warn" id="d-go">Eliminar perfil</button></section>
+    <section class="card"><h3>Sesión (HU-48)</h3><p>Cerrar sesión protege los datos de tu hijo si otras personas usan tu equipo.</p><button class="btn sec" id="out">Cerrar sesión</button></section>
+  </div></div></section>
+
+<!-- HU-12 / 15 / 17 / 18 / 19 / 38 / 44 -->
+<section class="view" id="v-nino"><div class="cols">
+  <section class="card kid" aria-live="polite"><img src="../assets/images/mascota.svg" alt="" width="90" height="105"><h3 id="k-t">Pantalla del niño</h3><p id="k-m">Tiempo restante: <b data-b="left" data-f="min"></b></p>
+    <div class="row"><button class="btn sec" id="k-5">Avanzar a 5 minutos restantes</button><button class="btn sec" id="k-more">Pedir «un ratito más»</button><button class="btn" id="k-end">Terminar el tiempo</button></div>
+    <div id="rest" hidden><p id="rest-t"></p><ul id="rest-a" class="list"></ul><div class="row"><button class="btn" id="k-ok">Guardar la pantalla y descansar</button><button class="btn sec" id="k-no">Hoy me costó</button></div></div></section>
+  <section class="card"><h3>Mi calendario de racha</h3><div class="days" id="days-k"></div><p class="big"><b data-b="points"></b> puntos · racha de <b data-b="streak"></b> días</p><p>Antes de usar: <b id="k-rules"></b></p></section>
+</div></section>
+
+</main></div>
+
+<dialog id="dlg" aria-labelledby="d-t"><h2 id="d-t"></h2><p id="d-p"></p><div class="row"><button class="btn" id="d-ok">Aceptar</button><button class="btn sec" id="d-cancel">Cancelar</button></div></dialog>
+<script src="../js/main.js"></script>
+</body>
+</html>
